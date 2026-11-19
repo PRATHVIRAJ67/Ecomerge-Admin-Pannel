@@ -1,4 +1,8 @@
 node_modules/
+/Mobile/Frontend/android/
+/Mobile/Frontend/ios/
+credentials.json
+*.jks
 dist/
 build/
 .expo/

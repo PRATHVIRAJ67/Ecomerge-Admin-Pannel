@@ -60,12 +60,14 @@ const perCallPool = {
     try {
       return await (client.query as (...a: unknown[]) => Promise<unknown>)(...args);
     } finally {
-      void client.end().catch(() => undefined);
+      // Await the close: on Workers, un-awaited I/O can be dropped when the response ends, leaking connections.
+      await client.end().catch(() => undefined);
     }
   },
   async connect() {
     const client = (await openClient()) as pg.Client & { release: (err?: unknown) => void };
-    client.release = () => void client.end().catch(() => undefined);
+    // release() returns the close promise so withTransaction() can await it (Workers drop un-awaited I/O).
+    (client as unknown as { release: () => Promise<unknown> }).release = () => client.end().catch(() => undefined);
     return client;
   },
   async end() {},
@@ -95,6 +97,7 @@ export async function withTransaction<T>(fn: (client: Tx) => Promise<T>): Promis
     await client.query('ROLLBACK').catch(() => undefined);
     throw err;
   } finally {
-    client.release();
+    // Node PoolClient.release() returns void; the Workers per-call client returns its close promise.
+    await (client.release() as unknown);
   }
 }
