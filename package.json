@@ -1,0 +1,25 @@
+{
+  "name": "uru-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "URU Admin dashboard + Commerce API (Cloudflare Workers + Supabase)",
+  "workspaces": [
+    "Shared",
+    "Shared/server",
+    "Shared/web",
+    "Admin/Backend",
+    "Admin/Frontend"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @ecommerce/admin-backend",
+    "dev:admin": "npm run dev -w @ecommerce/admin-frontend",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "deploy:api": "cd Admin/Backend && npx --yes wrangler@4 deploy",
+    "deploy:admin": "npm run build -w @ecommerce/admin-frontend && cd Admin/Frontend && npx --yes wrangler@4 deploy"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}

@@ -1,0 +1,66 @@
+/* Shared design tokens for all staff frontends — mirrors Shared/constants/tokens.ts */
+@source "./";
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  --color-forest-50: #f0f6f2;
+  --color-forest-100: #e7efea;
+  --color-forest-200: #c7dacf;
+  --color-forest-300: #9cbfab;
+  --color-forest-500: #2f7d5a;
+  --color-forest-600: #2c6b52;
+  --color-forest-700: #174d38;
+  --color-forest-800: #0f3526;
+  --color-forest-900: #0a2a1d;
+
+  --color-terracotta-50: #fdf6f1;
+  --color-terracotta-100: #fbede4;
+  --color-terracotta-200: #f4cfb6;
+  --color-terracotta-500: #d97745;
+  --color-terracotta-600: #b85e2f;
+
+  --color-cream: #faf7f0;
+  --color-cream-dark: #f1ebdd;
+  --color-ink: #1d2722;
+  --color-ink-soft: #4a5650;
+  --color-muted: #7a847f;
+  --color-line: #e6e0d2;
+
+  --color-success: #2e7d4f;
+  --color-success-tint: #e3f2e8;
+  --color-warning: #9a6416;
+  --color-warning-tint: #fcf3dc;
+  --color-danger: #b83a2e;
+  --color-danger-tint: #fbe7e4;
+  --color-info: #2f6690;
+  --color-info-tint: #e4eef6;
+
+  --shadow-card: 0 1px 2px rgb(29 39 34 / 0.04), 0 6px 20px rgb(29 39 34 / 0.05);
+  --shadow-raised: 0 12px 40px rgb(15 53 38 / 0.16);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-cream text-ink font-sans;
+  }
+  h1, h2, h3 {
+    @apply text-ink;
+  }
+  ::selection {
+    background: var(--color-terracotta-200);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}

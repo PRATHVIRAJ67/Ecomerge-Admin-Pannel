@@ -1,0 +1,6 @@
+{
+  // URU Admin dashboard — static site on Cloudflare Workers (assets only, SPA routing).
+  "name": "uru-admin",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./dist", "not_found_handling": "single-page-application" }
+}

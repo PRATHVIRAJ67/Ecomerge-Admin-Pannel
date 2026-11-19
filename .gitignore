@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+.expo/
+.wrangler/
+*.log
+*.tsbuildinfo
+.DS_Store
+coverage/
+# Secrets & per-machine config — only .env.example is committed
+.env
+.env.*
+!.env.example

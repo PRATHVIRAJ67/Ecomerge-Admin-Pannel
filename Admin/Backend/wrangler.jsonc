@@ -1,0 +1,19 @@
+{
+  // Commerce API on Cloudflare Workers (storefront, customer account, admin).
+  // Secrets (set with `wrangler secret put`, never committed): RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET,
+  // RAZORPAY_WEBHOOK_SECRET, R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, SUPABASE_SERVICE_ROLE_KEY.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "uru-api",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "156473fdf5364904bbb50cb9b6219ead" }],
+  // Cancels unpaid online orders after the payment timeout and returns their stock.
+  "triggers": { "crons": ["* * * * *"] },
+  "observability": { "enabled": true },
+  "vars": {
+    "NODE_ENV": "production",
+    "SUPABASE_URL": "https://mqawjsrmsoxmeqwqibgn.supabase.co",
+    "CORS_ORIGINS": "https://uru-store.prathviholla67.workers.dev,https://uru-admin.prathviholla67.workers.dev"
+  }
+}
